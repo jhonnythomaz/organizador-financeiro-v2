@@ -77,17 +77,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# --- Banco de Dados Lendo do Ambiente ---
+# --- Banco de Dados ---
+# Configuração SQLite para desenvolvimento local
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'organizador_db',
-        'USER': 'postgres',
-        'PASSWORD': '@Jklpm2pb', # Seu valor padrão para desenvolvimento local
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Configuração PostgreSQL (comentada para uso futuro)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'organizador_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'your_password_here',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 # Lógica padrão para serviços como Render e Heroku: se a variável DATABASE_URL existir,
 # ela sobrescreve a configuração 'default'.
 if 'DATABASE_URL' in os.environ:
